@@ -1,7 +1,6 @@
 <template lang='pug'>
   v-app.app
     router-view
-  </div>
 </template>
 
 <script>
@@ -10,7 +9,11 @@ export default {
 };
 </script>
 
-<style scoped>
+<style lang="scss">
+@import '~toby/styles/fonts';
+@import '~toby/styles/reset';
+
+
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
