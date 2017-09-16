@@ -104,7 +104,8 @@ if (argv.env && argv.env.deploy) {
     s3Options: {
       accessKeyId: process.env.AWS_ACCESS_KEY_ID,
       secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
-      region: 'us-east-1',
+      region: 'ap-northeast-2',
+      signatureVersion: 'v3',
     },
     s3UploadOptions: {
       Bucket: config.build.s3UploadBucket,
