@@ -41,7 +41,6 @@
     "file-loader": "^0.11.2",
     "friendly-errors-webpack-plugin": "^1.6.1",
     "html-webpack-plugin": "^2.30.1",
-    "http-proxy-middleware": "^0.17.4",
     "node-sass": "^4.5.3",
     "opn": "^5.1.0",
     "optimize-css-assets-webpack-plugin": "^3.2.0",
@@ -61,11 +60,14 @@
     "vuetify": "^0.15.7",
     "webpack": "^3.6.0",
     "webpack-bundle-analyzer": "^2.9.0",
-    "webpack-dev-middleware": "^1.12.0",
-    "webpack-hot-middleware": "^2.19.1",
     "webpack-merge": "^4.1.0",
     "webpack-s3-plugin": "git+https://github.com/fabianfett/s3-plugin-webpack.git",
     "yargs": "^8.0.2"
+  },
+  "devDependencies": {
+    "webpack-dev-middleware": "^1.12.0",
+    "http-proxy-middleware": "^0.17.4",
+    "webpack-hot-middleware": "^2.19.1"
   },
   "engines": {
     "node": ">= 4.0.0",

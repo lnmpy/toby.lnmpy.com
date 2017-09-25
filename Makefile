@@ -10,10 +10,7 @@ start:
 	npm run dev
 
 install:
-	npm install
-
-clean:
-	rm -rf $(folder)/*
+	yarn install
 
 build:
 	npm run build
@@ -21,8 +18,8 @@ build:
 lint:
 	npm run lint
 
-deploy: clean
+deploy:
 	npm run build -- --env.deploy
 
-report: clean
+report:
 	npm run build -- --env.report
