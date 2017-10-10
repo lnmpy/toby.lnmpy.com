@@ -1,5 +1,5 @@
 <template lang='pug'>
-  .home
+mt-cell-swipe(title="text", :right="right")
 
 </template>
 
@@ -8,11 +8,18 @@ export default {
   name: 'home-view',
   data() {
     return {
+      right: [
+        {
+          content: 'Delete',
+          style: { background: 'red', color: '#fff' },
+          handler: () => this.$messagebox('delete'),
+        },
+      ],
     };
   },
 };
 </script>
 
-<style scoped lang="scss">
+<style scoped lang="less">
 
 </style>

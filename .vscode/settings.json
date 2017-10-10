@@ -1,0 +1,60 @@
+{
+  "files.exclude": {
+    "**/.pyc": true,
+    "**/.git": true,
+    "**/.DS_Store": true,
+    "**/*.swp": true,
+    "**/tags": true,
+    "**/coverage": true,
+    "node_modules": true,
+    "dist": true
+  },
+  "files.trimTrailingWhitespace": true,
+  "files.eol": "\n",
+  "beautify.tabSize": 2,
+  "editor.tabSize": 2,
+  "editor.useTabStops": false,
+  "editor.renderWhitespace": "boundary",
+  "scss.validate": true,
+  "scss.lint.propertyIgnoredDueToDisplay": "error",
+  "scss.lint.zeroUnits": "ignore",
+  "scss.lint.universalSelector": "error",
+  "scss.lint.duplicateProperties": "error",
+  "scss.lint.unknownProperties": "error",
+  "scss.lint.fontFaceProperties": "error",
+  "scss.lint.vendorPrefix": "error",
+  "scss.lint.unknownVendorSpecificProperties": "ignore",
+  "less.lint.propertyIgnoredDueToDisplay": "error",
+  "less.lint.zeroUnits": "ignore",
+  "less.lint.universalSelector": "error",
+  "less.lint.duplicateProperties": "error",
+  "less.lint.compatibleVendorPrefixes": "error",
+  "less.lint.vendorPrefix": "error",
+  "less.lint.unknownProperties": "error",
+  "less.lint.unknownVendorSpecificProperties": "ignore",
+  "css.lint.duplicateProperties": "error",
+  "css.lint.fontFaceProperties": "error",
+  "css.lint.propertyIgnoredDueToDisplay": "error",
+  "css.lint.unknownVendorSpecificProperties": "ignore",
+  "css.lint.zeroUnits": "error",
+  "css.lint.vendorPrefix": "error",
+  "css.lint.unknownProperties": "error",
+  "less.validate": true,
+  "stylelint.enable": true,
+  "eslint.enable": true,
+  "eslint.run": "onSave",
+  "eslint.autoFixOnSave": true,
+  "eslint.validate": [
+    { "language": "javascript", "autoFix": true },
+    { "language": "javascriptreact", "autoFix": true },
+    { "language": "html", "autoFix": true },
+    { "language": "vue", "autoFix": true }
+  ],
+  "todohighlight.keywords": [
+    {
+      "text": "NOTE:",
+      "backgroundColor": "gray"
+    }
+  ],
+  "gitlens.codeLens.enabled": false
+}
