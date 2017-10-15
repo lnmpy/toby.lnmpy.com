@@ -1,16 +1,16 @@
 <template lang='pug'>
 
-mt-loadmore.list-view(:top-method="syncStates", ref="loadmore", @top-status-change="handleSyncStatusChange")
+mt-loadmore.home-view(:top-method="syncStates", ref="loadmore", @top-status-change="handleSyncStatusChange")
   .mint-loadmore-top(slot="top")
     span(v-if="topStatus === 'drop'") ↑
     span(v-if="topStatus === 'pull'") ↓
     span(v-if="topStatus === 'loading'") Loading...
-  mt-index-section.cards(v-for='list of lists', key='id', :index="list.title")
-      mt-cell-swipe.card(:to='card.url', target='_blank', :right="right", v-for='card of list.cards', key='id')
-        .cell
-          .cell-title {{ card.title }}
-            img.cell-thumbnail(:src='card.favIconUrl')
-          .cell-desc(v-if='!!card.description') {{ card.description }}
+  .card-list(v-for='list of lists', key='id')
+    .card-list-title {{ list.title }}
+    mt-cell.card(:href='card.url', target='_blank', v-for='card of list.cards', key='id')
+      .card-title {{ card.title }}
+        img.card-thumbnail(:src='card.favIconUrl')
+      .card-desc(v-if='!!card.description') {{ card.description }}
 
 </template>
 
@@ -23,13 +23,6 @@ export default {
     return {
       lists: [],
       topStatus: null,
-      right: [
-        {
-          content: 'Delete',
-          style: { background: 'red', color: '#fff' },
-          handler: () => this.$messagebox('delete'),
-        },
-      ],
     };
   },
   methods: {
@@ -60,40 +53,37 @@ export default {
 </script>
 
 <style lang="less">
-.list-view {
-  .cell {
-    .cell-thumbnail {
+.home-view {
+  .card-title {
+    color: #333;
+    font-size: 0.8rem;
+    line-height: 1.2em;
+    height: 1.2em;
+    overflow-y: hidden;
+    display: flex;
+    .card-thumbnail {
       width: 1.1em;
       margin: 0.05em 0.5em 0.05em 0;
       order: -1;
     }
-    .cell-title {
-      color: #333;
-      font-size: 0.8rem;
-      line-height: 1.2em;
-      height: 1.2em;
-      overflow-y: hidden;
-      display: flex;
-    }
-    .cell-desc {
-      color: #999;
-      font-size: 0.6rem;
-      min-height: 1.2em;
-      max-height: 2.4em;
-      line-height: 1.2em;
-      overflow-y: hidden;
-    }
+  }
+  .card-desc {
+    color: #999;
+    font-size: 0.6rem;
+    min-height: 1.2em;
+    max-height: 2.4em;
+    line-height: 1.2em;
+    overflow-y: hidden;
   }
 }
-.list-view {
+
+.home-view {
+  .mint-cell-value {
+    flex-direction: column;
+    align-items: flex-start;
+  }
   .mint-cell-title {
     display: none;
-  }
-  .mint-indexsection {
-    list-style: none;
-    .mint-indexsection-index {
-      font-weight: 600;
-    }
   }
 }
 </style>
