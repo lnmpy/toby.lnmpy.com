@@ -45,6 +45,12 @@ export default {
         this.$refs.loadmore.onTopLoaded();
       }
     },
+    removeCard(id) {
+      this.$http.delete(`cards/${id}`)
+        .then(() => {
+          this.syncStates();
+        });
+    },
   },
   mounted() {
     this.syncStates(false);
