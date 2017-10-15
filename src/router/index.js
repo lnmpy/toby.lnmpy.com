@@ -26,5 +26,9 @@ export default new Router({
       name: 'login',
       component: LoginView,
     },
+    {
+      path: '*',
+      redirect: { name: '404' },
+    },
   ],
 });
