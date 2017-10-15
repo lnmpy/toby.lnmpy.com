@@ -5,13 +5,12 @@ mt-loadmore.list-view(:top-method="syncStates", ref="loadmore", @top-status-chan
     span(v-if="topStatus === 'drop'") ↑
     span(v-if="topStatus === 'pull'") ↓
     span(v-if="topStatus === 'loading'") Loading...
-  .cards(v-for='list of lists', key='id')
-    mt-cell-swipe.card(:to='card.url', target='_blank', :right="right", v-for='card of list.cards', key='id')
-      .cell
-        .cell-title {{ card.title }}
-          img.cell-thumbnail(:src='card.favIconUrl')
-        .cell-desc(v-if='!!card.description') {{ card.description }}
-
+  mt-index-section.cards(v-for='list of lists', key='id', :index="list.title")
+      mt-cell-swipe.card(:to='card.url', target='_blank', :right="right", v-for='card of list.cards', key='id')
+        .cell
+          .cell-title {{ card.title }}
+            img.cell-thumbnail(:src='card.favIconUrl')
+          .cell-desc(v-if='!!card.description') {{ card.description }}
 
 </template>
 
@@ -89,6 +88,12 @@ export default {
 .list-view {
   .mint-cell-title {
     display: none;
+  }
+  .mint-indexsection {
+    list-style: none;
+    .mint-indexsection-index {
+      font-weight: 600;
+    }
   }
 }
 </style>
