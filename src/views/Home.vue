@@ -1,12 +1,17 @@
 <template lang='pug'>
 
-.list-view
+mt-loadmore.list-view(:top-method="syncStates", ref="loadmore", @top-status-change="handleSyncStatusChange")
+  .mint-loadmore-top(slot="top")
+    span(v-if="topStatus === 'drop'") ↑
+    span(v-if="topStatus === 'pull'") ↓
+    span(v-if="topStatus === 'loading'") Loading...
   .cards(v-for='list of lists', key='id')
     mt-cell-swipe.card(:to='card.url', target='_blank', :right="right", v-for='card of list.cards', key='id')
       .cell
         .cell-title {{ card.title }}
           img.cell-thumbnail(:src='card.favIconUrl')
         .cell-desc(v-if='!!card.description') {{ card.description }}
+
 
 </template>
 
@@ -18,6 +23,7 @@ export default {
   data() {
     return {
       lists: [],
+      topStatus: null,
       right: [
         {
           content: 'Delete',
@@ -28,17 +34,28 @@ export default {
     };
   },
   methods: {
-    fetchData() {
-      Indicator.open();
-      this.$http.get('states')
-        .then((resp) => {
-          Indicator.close();
-          this.lists = resp.body.lists;
-        });
+    handleSyncStatusChange(status) {
+      this.topStatus = status;
+    },
+    syncStates(force = true) {
+      const localData = localStorage.getItem('states');
+      if (force || !localData) {
+        Indicator.open();
+        this.$http.get('states')
+          .then((resp) => {
+            Indicator.close();
+            this.lists = resp.body.lists;
+            this.$refs.loadmore.onTopLoaded();
+            localStorage.setItem('states', JSON.stringify(resp.body));
+          });
+      } else {
+        this.lists = JSON.parse(localData).lists;
+        this.$refs.loadmore.onTopLoaded();
+      }
     },
   },
   mounted() {
-    this.fetchData();
+    this.syncStates(false);
   },
 };
 </script>
