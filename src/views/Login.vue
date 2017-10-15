@@ -1,9 +1,10 @@
 <template lang='pug'>
 .login-view
+  .login-form
+    img(src='/static/logo-toby.svg')
     mt-field(placeholder="Email", v-model="email")
     mt-field(placeholder="Password", type="password", v-model="password")
-
-    mt-button(type="primary", @click='login()') Login
+    mt-button(type="primary", size='large', @click='login()') Login
 
 </template>
 
@@ -20,27 +21,30 @@ export default {
   },
   methods: {
     login() {
+      delete Vue.http.headers.common.Authorization;
       this.$http.post('users/login',
         { email: this.email, password: this.password })
         .then((resp) => {
           localStorage.setItem('AuthToken', resp.body.token);
-          Vue.http.headers.common['x-auth-token'] = resp.body.token;
+          Vue.http.headers.common.Authorization = resp.body.token;
+          this.$router.push('/');
         });
     },
   },
 };
 </script>
 
-<style scoped lang='less'>
-@import '~toby/styles/flex.less';
-
+<style lang='less'>
 .login-view {
-    height: 100%;
-    .flex-display();
-    .flex-direction(column);
-    .justify-content(center);
-    .align-content(center);
-    .align-items(center);
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  .login-form {
+    margin-top: 30vh;
+    img {
+      width: 10rem;
+    }
+  }
 }
-
 </style>

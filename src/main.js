@@ -6,7 +6,6 @@ import 'toby/libs';
 import App from 'toby/App';
 import router from 'toby/router';
 
-
 Vue.config.productionTip = false;
 
 /* eslint-disable no-new */

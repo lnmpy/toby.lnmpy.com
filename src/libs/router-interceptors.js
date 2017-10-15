@@ -1,10 +1,8 @@
 import Router from 'toby/router';
 
-const authToken = localStorage.getItem('AuthToken');
-
 // router interceptors
 Router.beforeEach((to, from, next) => {
-  if (!authToken && to.name !== 'login') {
+  if (!localStorage.getItem('AuthToken') && to.name !== 'login') {
     next({ name: 'login', query: { nextUrl: to.path } });
   } else {
     next();

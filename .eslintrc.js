@@ -48,6 +48,7 @@ module.exports = {
     'import/extensions': 'off',  // allow import without extensions
     'import/no-unresolved': 'off',  // support for webpack alias
     'import/no-extraneous-dependencies': 'off',  // support for webpack alias
+    'no-debugger': require('os').platform() === 'darwin' ? 'off' : 'error',
   }
 };
 

@@ -4,11 +4,11 @@ import Router from 'toby/router';
 
 Vue.use(VueResource);
 
-Vue.http.options.root = 'https://api.gettoby.com/v2/';
+Vue.http.options.root = 'https://api.lnmpy.com/toby/';
 
 const authToken = localStorage.getItem('AuthToken');
 if (authToken) {
-  Vue.http.headers.common['x-auth-token'] = authToken;
+  Vue.http.headers.common.Authorization = authToken;
 }
 
 // http interceptors

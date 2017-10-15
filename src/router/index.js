@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 
+import NotFoundView from 'toby/views/NotFound';
 import LoginView from 'toby/views/Login';
 import HomeView from 'toby/views/Home';
 
@@ -14,6 +15,11 @@ export default new Router({
       path: '/',
       name: 'home',
       component: HomeView,
+    },
+    {
+      path: '/404',
+      name: '404',
+      component: NotFoundView,
     },
     {
       path: '/login',
