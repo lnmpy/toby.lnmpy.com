@@ -4,7 +4,7 @@ import Router from 'toby/router';
 
 Vue.use(VueResource);
 
-Vue.http.options.root = 'https://api.lnmpy.com/toby/';
+Vue.http.options.root = 'https://api.lnmpy.com/public/toby/';
 
 const authToken = localStorage.getItem('AuthToken');
 if (authToken) {
