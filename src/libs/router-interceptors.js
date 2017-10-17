@@ -10,6 +10,7 @@ Router.beforeEach((to, from, next) => {
 });
 
 Router.afterEach((to) => {
+  window.scrollTo(0, 0);
   // ga track
   if (window.ga) {
     window.ga('set', 'page', to.fullPath);

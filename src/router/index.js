@@ -2,6 +2,7 @@ import Vue from 'vue';
 import Router from 'vue-router';
 
 import NotFoundView from 'toby/views/NotFound';
+import AboutView from 'toby/views/About';
 import LoginView from 'toby/views/Login';
 import HomeView from 'toby/views/Home';
 
@@ -25,6 +26,11 @@ export default new Router({
       path: '/login',
       name: 'login',
       component: LoginView,
+    },
+    {
+      path: '/about',
+      name: 'about',
+      component: AboutView,
     },
     {
       path: '*',

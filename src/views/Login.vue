@@ -1,12 +1,11 @@
 <template lang='pug'>
 .login-view
-  .login-form
-    img(src='/static/logo-toby.svg')
-    mt-field(placeholder="Email", v-model="email")
-    mt-field(placeholder="Password", type="password", v-model="password")
-    mt-button(type="primary", size='large', @click='!loading && login()')
-      span(v-if='!loading') Login
-      mt-spinner(type="fading-circle", v-if='loading', color="white", style='display: table-cell;')
+  img(src='/static/logo-toby.svg')
+  mu-text-field(hintText="Email", v-model="email")
+  mu-text-field(hintText="Password", type="password", v-model="password")
+  mu-raised-button(primary, @click='!loading && login()', fullWidth)
+    span(v-if='!loading') Login
+    mu-circular-progress(v-if='loading', color="white")
 
 </template>
 
@@ -41,25 +40,20 @@ export default {
 
 <style lang='less'>
 .login-view {
-  height: 100vh;
+  width: 60%;
+  min-width: 200px;
+  margin: 0 auto;
+  padding-top: 20vh;
   display: flex;
   flex-direction: column;
   align-items: center;
-  .login-form {
-    margin-top: 30vh;
-    display: flex;
-    flex-direction: column;
-    max-width: 80%;
-    width: 30em;
-    img {
-      width: 10rem;
-      margin: 30px auto;
-    }
+  img {
+    width: 10rem;
+    margin: 50px auto;
   }
-}
-.login-view {
-  .mint-button {
-    margin-top: 10px;
+  .mu-text-field {
+    width: 100%;
+    margin-bottom: 30px;
   }
 }
 </style>

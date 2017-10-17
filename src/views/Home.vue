@@ -1,48 +1,46 @@
 <template lang='pug'>
+.home-view
+  .content(v-if='!syncingAtFirst')
+    mu-refresh-control(:refreshing="syncing", :trigger="trigger", @refresh="syncStates")
+    mu-list(v-for='list of lists', key='id')
+      mu-sub-header {{ list.title }}
+      mu-list-item(v-for='card of list.cards', key='id', :title='card.title', :href='card.url', target='_blank')
+        mu-avatar(:src='card.favIconUrl', slot='leftAvatar', backgroundColor='white', :size='40')
+        .description(slot='describe') {{ card.description }}
+        mu-divider
+    mu-float-button(icon='add')
 
-mt-loadmore.home-view(:top-method="syncStates", ref="loadmore", @top-status-change="handleSyncStatusChange")
-  .mint-loadmore-top(slot="top")
-    span(v-if="topStatus === 'drop'") ↑
-    span(v-if="topStatus === 'pull'") ↓
-    span(v-if="topStatus === 'loading'") Loading...
-  .card-list(v-for='list of lists', key='id')
-    .card-list-title {{ list.title }}
-    mt-cell.card(:href='card.url', target='_blank', v-for='card of list.cards', key='id')
-      .card-title {{ card.title }}
-        img.card-thumbnail(:src='card.favIconUrl')
-      .card-desc(v-if='!!card.description') {{ card.description }}
+  mu-circular-progress(v-if='syncingAtFirst', :size='60', :strokeWidth='5')
 
 </template>
 
 <script>
-import { Indicator } from 'mint-ui';
 
 export default {
   name: 'home-view',
   data() {
     return {
       lists: [],
-      topStatus: null,
+      syncing: false,
+      syncingAtFirst: false,
+      trigger: null,
     };
   },
   methods: {
-    handleSyncStatusChange(status) {
-      this.topStatus = status;
-    },
     syncStates(force = true) {
       const localData = localStorage.getItem('states');
       if (force || !localData) {
-        Indicator.open();
+        this.syncing = force;
+        this.syncingAtFirst = !localData;
         this.$http.get('states')
           .then((resp) => {
-            Indicator.close();
+            this.syncing = false;
+            this.syncingAtFirst = false;
             this.lists = resp.body.lists;
-            this.$refs.loadmore.onTopLoaded();
             localStorage.setItem('states', JSON.stringify(resp.body));
           });
       } else {
         this.lists = JSON.parse(localData).lists;
-        this.$refs.loadmore.onTopLoaded();
       }
     },
     removeCard(id) {
@@ -53,43 +51,27 @@ export default {
     },
   },
   mounted() {
+    this.trigger = this.$el;
     this.syncStates(false);
   },
 };
 </script>
 
-<style lang="less">
+<style lang='less'>
 .home-view {
-  .card-title {
-    color: #333;
-    font-size: 0.8rem;
-    line-height: 1.2em;
-    height: 1.2em;
-    overflow-y: hidden;
-    display: flex;
-    .card-thumbnail {
-      width: 1.1em;
-      margin: 0.05em 0.5em 0.05em 0;
-      order: -1;
-    }
-  }
-  .card-desc {
+  .description {
     color: #999;
-    font-size: 0.6rem;
-    min-height: 1.2em;
-    max-height: 2.4em;
-    line-height: 1.2em;
-    overflow-y: hidden;
   }
-}
-
-.home-view {
-  .mint-cell-value {
-    flex-direction: column;
-    align-items: flex-start;
+  .mu-float-button {
+    position: fixed;
+    top: 90vh;
+    right: 10px;
   }
-  .mint-cell-title {
-    display: none;
+  .mu-circular-progress {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
   }
 }
 </style>
