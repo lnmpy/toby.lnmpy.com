@@ -11,6 +11,7 @@ export default {
 
 <style lang="less">
 @import '~toby/styles/reset.less';
+@import '~toby/styles/fonts.less';
 
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
