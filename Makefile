@@ -15,12 +15,14 @@ install:
 	yarn install
 
 build:
+	@rm -rf dist
 	npm run build
 
 lint:
 	npm run lint
 
 deploy:
+	@rm -rf dist
 	npm run build -- --env.deploy
 
 report:

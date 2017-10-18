@@ -101,7 +101,7 @@ var webpackConfig = merge(baseWebpackConfig, {
       {
         cacheId: 'toby.lnmpy.com',
         dontCacheBustUrlsMatching: /\.\w{8}\./,
-        filename: 'service-worker.js',
+        filename: 'sw.js',
         minify: true,
         navigateFallback: '/index.html',
         staticFileGlobsIgnorePatterns: [/\.map$/, /asset-manifest\.json$/],
@@ -113,6 +113,8 @@ var webpackConfig = merge(baseWebpackConfig, {
 if (argv.env && argv.env.deploy) {
   var S3Plugin = require('webpack-s3-plugin')
   webpackConfig.plugins.push(new S3Plugin({
+    directory: 'dist',
+    exclude: /.*\.map$/,
     s3Options: {
       accessKeyId: process.env.AWS_ACCESS_KEY_ID,
       secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
@@ -122,7 +124,7 @@ if (argv.env && argv.env.deploy) {
       Bucket: config.build.s3UploadBucket,
       ServerSideEncryption: 'AES256',
       CacheControl(fileName) {
-        if (/\.html/.test(fileName) || /\.json/.test(fileName))
+        if (/\.html$/.test(fileName) || /\.json$/.test(fileName) || /sw.js$/.test(fileName))
           return 'no-cache, no-transform, public';
         else
           return 'max-age=315360000, no-transform, public';

@@ -2,9 +2,6 @@ import Vue from 'vue';
 import Raven from 'raven-js';
 import RavenVue from 'raven-js/plugins/vue';
 
-const userFromLocalStorage = JSON.parse(decodeURIComponent(atob(
-  localStorage.getItem('UserInfo') || 'JTdCJTdE')));
-
 const ravenOptions = {
   autoBreadcrumbs: { xhr: false },
 };
@@ -14,13 +11,9 @@ Vue.config.errorHandler = (err) => {
 };
 
 Raven
-  .config('', ravenOptions)
+  .config('https://0a78ca5db79d44d29886850cf0e11f19@sentry.io/231717', ravenOptions)
   .addPlugin(RavenVue, Vue)
   .install();
-
-Raven.setUserContext({
-  email: userFromLocalStorage.email || '',
-});
 
 // eslint-disable-next-line
 Promise.prototype.catch = (function (onRejected) {

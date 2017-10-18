@@ -8,7 +8,7 @@ module.exports = {
     assetsRoot: path.resolve(__dirname, '../dist'),
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
-    productionSourceMap: false,
+    productionSourceMap: true,
     s3UploadBucket: 'apps.lnmpy.com',
     s3UploadBasePath: 'toby/',
   },
