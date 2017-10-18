@@ -9,8 +9,6 @@ module.exports = {
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
     productionSourceMap: true,
-    s3UploadBucket: 'apps.lnmpy.com',
-    s3UploadBasePath: 'toby/',
   },
   dev: {
     env: require('./dev.env'),

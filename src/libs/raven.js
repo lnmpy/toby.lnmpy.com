@@ -4,6 +4,7 @@ import RavenVue from 'raven-js/plugins/vue';
 
 const ravenOptions = {
   autoBreadcrumbs: { xhr: false },
+  release: process.env.GIT_SHA,
 };
 
 Vue.config.errorHandler = (err) => {
@@ -11,7 +12,7 @@ Vue.config.errorHandler = (err) => {
 };
 
 Raven
-  .config('https://0a78ca5db79d44d29886850cf0e11f19@sentry.io/231717', ravenOptions)
+  .config(process.env.SENTRY_DSN, ravenOptions)
   .addPlugin(RavenVue, Vue)
   .install();
 

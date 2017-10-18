@@ -5,6 +5,6 @@ module.exports = merge(prodEnv, {
   NODE_ENV: '"development"',
 
   // used in HtmlWebpackPlugin
-  ga_code: '',
+  gaCode: '',
   sw: false,
 })
