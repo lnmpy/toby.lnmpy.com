@@ -136,13 +136,11 @@ if (argv.env && argv.env.deploy) {
   }))
   var SentryPlugin = require('webpack-sentry-plugin')
   webpackConfig.plugins.push(new SentryPlugin({
-    // Sentry options are required
     organisation: config.build.env.sentryOrganisation,
     project: config.build.env.sentryProject,
     apiKey: process.env.SENTRY_RELEASE_API_KEY,
     release: argv.env.git_sha,
   }))
-
 }
 
 if (argv.env && argv.env.report) {
