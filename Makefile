@@ -3,6 +3,8 @@ export PATH := node_modules/.bin/:$(PATH)
 SHELL = /bin/bash
 folder = dist
 
+.PHONY: build
+.PHONY: config
 
 all: start
 

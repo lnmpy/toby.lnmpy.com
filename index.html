@@ -21,5 +21,7 @@
     })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
     ga('create', 'UA-yourID', 'UA-40753206-5');
     ga('send', 'pageview');
+    (function() {if('serviceWorker' in navigator) {navigator.serviceWorker.register('/my-service-worker.js');}})();
   </script>
+
 </html>
