@@ -31,7 +31,7 @@ var webpackConfig = merge(baseWebpackConfig, {
   plugins: [
     // http://vuejs.github.io/vue-loader/en/workflow/production.html
     new webpack.DefinePlugin({
-      'process.env.GIT_SHA': `"${argv.env.git_sha}"`,
+      'process.env.GIT_SHA': argv.env ? `"${argv.env.git_sha}"` : '""',
       'process.env': env
     }),
     new webpack.optimize.UglifyJsPlugin({

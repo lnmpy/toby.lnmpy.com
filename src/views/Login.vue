@@ -3,7 +3,7 @@
   img(src='/static/logo-toby.svg')
   mu-text-field(hintText="Email", v-model="email")
   mu-text-field(hintText="Password", type="password", v-model="password")
-  mu-raised-button(primary, @click='!loading && login()', fullWidth)
+  mu-raised-button(primary, @click='!loading && login()', :fullWidth='true')
     span(v-if='!loading') Login
     mu-circular-progress(v-if='loading', color="white")
 
@@ -24,7 +24,6 @@ export default {
   methods: {
     login() {
       delete Vue.http.headers.common.Authorization;
-      Vue.http.headers.common.Authorization.name = 'hello';
       this.loading = true;
       this.$http.post('users/login',
         { email: this.email, password: this.password })
