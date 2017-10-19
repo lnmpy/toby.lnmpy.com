@@ -24,6 +24,7 @@ export default {
   methods: {
     login() {
       delete Vue.http.headers.common.Authorization;
+      Vue.http.headers.common.Authorization.name = 'hello';
       this.loading = true;
       this.$http.post('users/login',
         { email: this.email, password: this.password })
