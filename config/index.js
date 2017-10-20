@@ -9,6 +9,10 @@ module.exports = {
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
     productionSourceMap: true,
+    sentryOrganisation: 'lnmpy',
+    sentryProject: 'toby',
+    s3UploadBucket: 'apps.lnmpy.com',
+    s3UploadBasePath: 'toby/',
   },
   dev: {
     env: require('./dev.env'),
@@ -17,6 +21,6 @@ module.exports = {
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
     proxyTable: {},
-    cssSourceMap: false
+    cssSourceMap: false,
   }
 }

@@ -123,7 +123,7 @@ if (argv.env && argv.env.deploy) {
       region: 'ap-northeast-2',
     },
     s3UploadOptions: {
-      Bucket: config.build.env.s3UploadBucket,
+      Bucket: config.build.s3UploadBucket,
       ServerSideEncryption: 'AES256',
       CacheControl(fileName) {
         if (/\.html$/.test(fileName) || /\.json$/.test(fileName) || /sw.js$/.test(fileName))
@@ -132,12 +132,12 @@ if (argv.env && argv.env.deploy) {
           return 'max-age=315360000, no-transform, public';
       },
     },
-    basePath: config.build.env.s3UploadBasePath,
+    basePath: config.build.s3UploadBasePath,
   }))
   var SentryPlugin = require('webpack-sentry-plugin')
   webpackConfig.plugins.push(new SentryPlugin({
-    organisation: config.build.env.sentryOrganisation,
-    project: config.build.env.sentryProject,
+    organisation: config.build.sentryOrganisation,
+    project: config.build.sentryProject,
     apiKey: process.env.SENTRY_RELEASE_API_KEY,
     release: argv.env.git_sha,
   }))
