@@ -23,7 +23,7 @@ lint:
 
 deploy:
 	@rm -rf dist
-	$(eval GIT_COMMIT = $(shell git rev-parse --verify HEAD))
+	$(eval GIT_COMMIT = $(shell git rev-parse --verify HEAD --short))
 	npm run build -- --env.deploy --env.git_sha='$(GIT_COMMIT)'
 
 report:

@@ -12,7 +12,7 @@ var yargs = require("yargs/yargs")
 var SWPrecacheWebpackPlugin = require('sw-precache-webpack-plugin')
 
 
-var argv = yargs().parse(process.argv);
+var argv = yargs().parse(process.argv)
 var env = config.build.env
 
 var webpackConfig = merge(baseWebpackConfig, {
