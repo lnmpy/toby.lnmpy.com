@@ -67,6 +67,7 @@
     "webpack-merge": "^4.1.0",
     "webpack-s3-plugin": "git+https://github.com/fabianfett/s3-plugin-webpack.git",
     "webpack-sentry-plugin": "^1.14.0",
+    "webpack-sorcery-plugin": "^0.2.0",
     "yargs": "^8.0.2"
   },
   "devDependencies": {

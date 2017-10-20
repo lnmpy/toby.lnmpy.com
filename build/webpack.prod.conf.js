@@ -134,6 +134,8 @@ if (argv.env && argv.env.deploy) {
     },
     basePath: config.build.s3UploadBasePath,
   }))
+  var SorceryPlugin = require('webpack-sorcery-plugin')
+  webpackConfig.plugins.push(new SorceryPlugin())
   var SentryPlugin = require('webpack-sentry-plugin')
   webpackConfig.plugins.push(new SentryPlugin({
     organisation: config.build.sentryOrganisation,
