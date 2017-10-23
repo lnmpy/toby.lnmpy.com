@@ -102,16 +102,14 @@ var webpackConfig = merge(baseWebpackConfig, {
 
 if (argv.env && argv.env.deploy) {
   var SWPrecacheWebpackPlugin = require('sw-precache-webpack-plugin')
-  new SWPrecacheWebpackPlugin(
-    {
-      cacheId: 'toby.lnmpy.com',
-      dontCacheBustUrlsMatching: /\.\w{8}\./,
-      filename: 'sw.js',
-      minify: true,
-      navigateFallback: '/index.html',
-      staticFileGlobsIgnorePatterns: [/\.map$/, /asset-manifest\.json$/],
-    }
-  ),
+  webpackConfig.plugins.push(new SWPrecacheWebpackPlugin({
+    cacheId: 'toby.lnmpy.com',
+    dontCacheBustUrlsMatching: /\.\w{8}\./,
+    filename: 'sw.js',
+    minify: true,
+    navigateFallback: '/index.html',
+    staticFileGlobsIgnorePatterns: [/\.map$/, /asset-manifest\.json$/],
+  }))
   var S3Plugin = require('webpack-s3-plugin')
   webpackConfig.plugins.push(new S3Plugin({
     directory: 'dist',
