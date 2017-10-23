@@ -9,8 +9,6 @@ var HtmlWebpackPlugin = require('html-webpack-plugin')
 var ExtractTextPlugin = require('extract-text-webpack-plugin')
 var OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin')
 var yargs = require("yargs/yargs")
-var SWPrecacheWebpackPlugin = require('sw-precache-webpack-plugin')
-
 
 var argv = yargs().parse(process.argv)
 var env = config.build.env
@@ -99,20 +97,21 @@ var webpackConfig = merge(baseWebpackConfig, {
         ignore: ['.*']
       }
     ]),
-    new SWPrecacheWebpackPlugin(
-      {
-        cacheId: 'toby.lnmpy.com',
-        dontCacheBustUrlsMatching: /\.\w{8}\./,
-        filename: 'sw.js',
-        minify: true,
-        navigateFallback: '/index.html',
-        staticFileGlobsIgnorePatterns: [/\.map$/, /asset-manifest\.json$/],
-      }
-    ),
   ]
 })
 
 if (argv.env && argv.env.deploy) {
+  var SWPrecacheWebpackPlugin = require('sw-precache-webpack-plugin')
+  new SWPrecacheWebpackPlugin(
+    {
+      cacheId: 'toby.lnmpy.com',
+      dontCacheBustUrlsMatching: /\.\w{8}\./,
+      filename: 'sw.js',
+      minify: true,
+      navigateFallback: '/index.html',
+      staticFileGlobsIgnorePatterns: [/\.map$/, /asset-manifest\.json$/],
+    }
+  ),
   var S3Plugin = require('webpack-s3-plugin')
   webpackConfig.plugins.push(new S3Plugin({
     directory: 'dist',
