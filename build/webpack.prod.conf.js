@@ -139,6 +139,7 @@ if (argv.env && argv.env.deploy) {
     project: config.build.sentryProject,
     apiKey: process.env.SENTRY_RELEASE_API_KEY,
     release: argv.env.git_sha,
+    suppressConflictError: true,
   }))
 }
 
