@@ -2,12 +2,11 @@
  "name": "Toby",
  "short_name": "Toby",
  "icons": [{
-   "src": "/static/favicon-96x96.png",
-   "sizes": "96x96",
-   "type": "image/png"
+   "src": "/static/logo-toby.svg",
+   "sizes": "32x32 48x48 72x72 96x96 128x128 144x144 192x192 256x256"
   }],
  "background_color": "#FAFAFA",
- "theme_color": "#7E57C2",
+ "theme_color": "#FA507B",
  "display": "standalone",
  "start_url": "/",
  "orientation": "portrait"
