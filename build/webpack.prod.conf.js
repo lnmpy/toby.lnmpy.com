@@ -135,6 +135,7 @@ if (argv.env && argv.env.deploy) {
   webpackConfig.plugins.push(new SorceryPlugin())
   var SentryPlugin = require('webpack-sentry-plugin')
   webpackConfig.plugins.push(new SentryPlugin({
+    exclude: /\.css|vendor/,
     organisation: config.build.sentryOrganisation,
     project: config.build.sentryProject,
     apiKey: process.env.SENTRY_RELEASE_API_KEY,
