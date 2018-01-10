@@ -8,6 +8,6 @@ jobs:
         - master
     steps:
       - checkout
-      - run: npm i yarn
+      - run: npm i yarn@latest  --no-save
       - run: make install
       - run: make deploy
