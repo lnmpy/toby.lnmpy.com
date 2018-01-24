@@ -58,7 +58,7 @@ export default {
         this.$http.get('states').then((resp) => {
           this.syncing = false;
           this.syncingAtFirst = false;
-          this.lists = resp.body.lists;
+          this.lists = resp.body.lists.filter(l => !l.teamId);
           localStorage.setItem('states', JSON.stringify(resp.body));
         });
       } else {
