@@ -63,7 +63,7 @@
     "vue-style-loader": "3.0.3",
     "vue-template-compiler": "2.4.4",
     "webpack": "3.6.0",
-    "webpack-bundle-analyzer": "2.9.0",
+    "webpack-bundle-analyzer": "3.3.2",
     "webpack-merge": "4.1.0",
     "webpack-s3-plugin": "git+https://github.com/fabianfett/s3-plugin-webpack.git",
     "webpack-sentry-plugin": "1.14.0",
