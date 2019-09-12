@@ -11,8 +11,6 @@ module.exports = {
     productionSourceMap: true,
     sentryOrganisation: 'lnmpy',
     sentryProject: 'toby',
-    s3UploadBucket: 'apps.lnmpy.com',
-    s3UploadBasePath: 'toby/',
   },
   dev: {
     env: require('./dev.env'),

@@ -110,27 +110,6 @@ if (argv.env && argv.env.deploy) {
     navigateFallback: '/index.html',
     staticFileGlobsIgnorePatterns: [/\.map$/, /asset-manifest\.json$/],
   }))
-  var S3Plugin = require('webpack-s3-plugin')
-  webpackConfig.plugins.push(new S3Plugin({
-    directory: 'dist',
-    exclude: /.*\.map$/,
-    s3Options: {
-      accessKeyId: process.env.AWS_ACCESS_KEY_ID,
-      secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
-      region: 'ap-northeast-2',
-    },
-    s3UploadOptions: {
-      Bucket: config.build.s3UploadBucket,
-      ServerSideEncryption: 'AES256',
-      CacheControl(fileName) {
-        if (/\.html$/.test(fileName) || /\.json$/.test(fileName) || /sw.js$/.test(fileName))
-          return 'no-cache, no-transform, public';
-        else
-          return 'max-age=315360000, no-transform, public';
-      },
-    },
-    basePath: config.build.s3UploadBasePath,
-  }))
   var SorceryPlugin = require('webpack-sorcery-plugin')
   webpackConfig.plugins.push(new SorceryPlugin())
   var SentryPlugin = require('webpack-sentry-plugin')
